@@ -1,9 +1,11 @@
+import NextAuthProvider from "@/providers/NextAuthProvider";
+import { Toaster } from "react-hot-toast";
+
 import Layout from "@/components/layouts/Layout";
 import TanstakQueryProvider from "@/providers/TanstakQueryProvider";
 import yekanBakhFont from "@/utils/fonts";
 
 import "./globals.css";
-import { Toaster } from "react-hot-toast";
 
 export const metadata = {
   title: "Create Next App",
@@ -15,7 +17,9 @@ export default function RootLayout({ children }) {
     <html lang="fa" dir="rtl">
       <body className={yekanBakhFont.className}>
         <TanstakQueryProvider>
-          <Layout>{children}</Layout>
+          <NextAuthProvider>
+            <Layout>{children}</Layout>
+          </NextAuthProvider>
         </TanstakQueryProvider>
         <Toaster />
       </body>
