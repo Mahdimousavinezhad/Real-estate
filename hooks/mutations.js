@@ -9,7 +9,6 @@ const useRegister = (router) => {
   return useMutation({
     mutationFn,
     onSuccess: (data) => {
-      console.log(data);
       if (data.message) {
         toast.success(data.message);
         router.push("/signin");

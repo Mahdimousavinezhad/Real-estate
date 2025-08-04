@@ -41,7 +41,7 @@ function SigninPage() {
     if (res.error) {
       toast.error(res.error);
     } else {
-      router.push("/");
+      router.replace("/");
     }
   };
 
