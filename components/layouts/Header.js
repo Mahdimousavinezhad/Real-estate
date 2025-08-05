@@ -7,7 +7,7 @@ import { FaUserAlt } from "react-icons/fa";
 
 function Header() {
   const { status } = useSession();
-  console.log(status);
+
   return (
     <header className="flex items-center justify-between bg-[#304ffe] text-white p-3 rounded-lg mt-4">
       <div>
