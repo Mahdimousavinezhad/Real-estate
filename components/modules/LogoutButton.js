@@ -9,7 +9,7 @@ function LogoutButton() {
 
   const signOutHandler = () => {
     signOut({ redirect: false });
-    router.push("/");
+    router.push("/signin");
   };
 
   return (

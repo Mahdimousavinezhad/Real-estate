@@ -5,14 +5,14 @@ import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import toast from "react-hot-toast";
-import { ThreeDots } from "react-loader-spinner";
+import Loader from "@/components/modules/Loader";
 
 function SigninPage() {
   const [form, setForm] = useState({
     email: "",
     password: "",
   });
-  const [isLoading, setIsLoading] = useState(false);
+  const [isPending, setIsPending] = useState(false);
 
   const router = useRouter();
 
@@ -24,11 +24,11 @@ function SigninPage() {
 
   const loginHandler = async (event) => {
     event.preventDefault();
-    setIsLoading(true);
+    setIsPending(true);
 
     if (!form.email || !form.password) {
       toast.error("لطفا اطلاعات خود را کامل وارد کنید!");
-      setIsLoading(false);
+      setIsPending(false);
       return;
     }
 
@@ -37,7 +37,7 @@ function SigninPage() {
       password: form.password,
       redirect: false,
     });
-    setIsLoading(false);
+    setIsPending(false);
     if (res.error) {
       toast.error(res.error);
     } else {
@@ -75,7 +75,7 @@ function SigninPage() {
           className="mb-10 w-64 border border-dashed border-[#304ffe] text-gray rounded-md p-[10px] text-end text-[1rem] h-[40px] focus:border-solid focus:outline-none"
         />
 
-        {!isLoading ? (
+        {!isPending ? (
           <button
             type="submit"
             onClick={loginHandler}
@@ -84,16 +84,7 @@ function SigninPage() {
             ورود
           </button>
         ) : (
-          <ThreeDots
-            visible={isLoading}
-            height="40"
-            width="80"
-            color="#304ffe"
-            radius="9"
-            ariaLabel="three-dots-loading"
-            wrapperStyle={{ margin: "auto" }}
-            wrapperClass=""
-          />
+          <Loader isPending={isPending} />
         )}
       </form>
       <p className="text-gray text-[1.1rem]">

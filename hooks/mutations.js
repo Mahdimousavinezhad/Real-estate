@@ -22,4 +22,23 @@ const useRegister = (router) => {
   });
 };
 
-export { useRegister };
+const useAddProfile = () => {
+  const mutationFn = async (data) => await api.post("/api/profile", data);
+
+  return useMutation({
+    mutationFn,
+    onSuccess: (data) => {
+      if (data.message) {
+        toast.success(data.message);
+      } else if (data.error) {
+        toast.error(data.error);
+      }
+    },
+    onError: (data) => {
+      toast.error(data.response.data.error);
+      console.log(data);
+    },
+  });
+};
+
+export { useRegister, useAddProfile };

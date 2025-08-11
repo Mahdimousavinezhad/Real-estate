@@ -1,5 +1,7 @@
+import AddProfilePage from "@/components/templates/dashboard/AddProfilePage";
+
 function AddProfile() {
-  return <div>AddProfile</div>;
+  return <AddProfilePage />;
 }
 
 export default AddProfile;

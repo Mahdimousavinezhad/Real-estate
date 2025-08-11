@@ -1,0 +1,57 @@
+import Profile from "@/models/Profile";
+import User from "@/models/User";
+import connectDB from "@/utils/connectDB";
+import { Types } from "mongoose";
+import { getServerSession } from "next-auth";
+import { NextResponse } from "next/server";
+
+export async function POST(req) {
+  try {
+    await connectDB();
+
+    const body = await req.json();
+    const session = await getServerSession(req);
+
+    if (!session) {
+      return NextResponse.json(
+        { error: "لطفا وارد حساب کاربری خود شوید!" },
+        { status: 401 }
+      );
+    }
+
+    const user = await User.findOne({ email: session.user.email });
+
+    if (!user) {
+      return NextResponse.json(
+        { error: "حساب کاربری شما یافت نشد!" },
+        { status: 404 }
+      );
+    }
+
+    const { amenities, rules, ...rest } = body;
+
+    for (const key in rest) {
+      const value = rest[key];
+
+      if (value === undefined && value === null && value === "") {
+        return NextResponse.json(
+          { error: "مقادیر معتبر وارد کنید!" },
+          { status: 422 }
+        );
+      }
+    }
+
+    body.userId = new Types.ObjectId(user._id);
+
+    const newProfile = await Profile.create(body);
+    return NextResponse.json(
+      { message: "آگهی شما با موفقیت ثبت شد!", data: newProfile },
+      { status: 201 }
+    );
+  } catch (error) {
+    return NextResponse.json(
+      { error: "مشکلی در سمت سرور پیش آمده است!" },
+      { status: 500 }
+    );
+  }
+}

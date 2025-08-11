@@ -8,7 +8,7 @@ async function DashboardSidebar({ children }) {
   const session = await getServerSession(authOptions);
 
   return (
-    <div className="flex justify-between mt-20 gap-4">
+    <div className="flex justify-between mt-20 gap-7">
       <div className="flex flex-col items-center h-fit py-[30px] px-[15px] rounded-[10px] shadow-[#304ffe4a_0px_4px_15px] w-[220px]">
         <CgProfile className="text-[3rem] text-[#304ffe]" />
         <p className="text-grey text-[1.1rem] font-normal mt-5">

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useRegister } from "@/hooks/mutations";
 import toast from "react-hot-toast";
-import { ThreeDots } from "react-loader-spinner";
+import Loader from "@/components/modules/Loader";
 
 function SignupPage() {
   const [form, setForm] = useState({
@@ -93,16 +93,7 @@ function SignupPage() {
             ثبت نام
           </button>
         ) : (
-          <ThreeDots
-            visible={isPending}
-            height="40"
-            width="80"
-            color="#304ffe"
-            radius="9"
-            ariaLabel="three-dots-loading"
-            wrapperStyle={{ margin: "auto" }}
-            wrapperClass=""
-          />
+          <Loader isPending={isPending} />
         )}
       </form>
       <p className="text-gray text-[1.1rem]">
