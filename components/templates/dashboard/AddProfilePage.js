@@ -1,22 +1,24 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 import RadioList from "@/components/elements/RadioList";
 import TextInput from "@/components/elements/TextInput";
-import { radioInputInfo, textInputInfo } from "@/constants/profileFormInputs";
 import TextList from "@/components/modules/TextList";
 import CustomeDatePicker from "@/components/modules/CustomeDatePicker";
-import { useAddProfile } from "@/hooks/mutations";
-import toast from "react-hot-toast";
 import Loader from "@/components/modules/Loader";
+import { radioInputInfo, textInputInfo } from "@/constants/profileFormInputs";
+import { useAddProfile, useEditProfile } from "@/hooks/mutations";
 
-function AddProfilePage() {
+function AddProfilePage({ profileId, profile }) {
   const [profileData, setProfileData] = useState({
     title: "",
     description: "",
     location: "",
     price: null,
+    phone: "",
     realState: "",
     constructionDate: new Date(),
     category: "",
@@ -24,28 +26,42 @@ function AddProfilePage() {
     amenities: [],
   });
 
-  const { mutate, isPending } = useAddProfile();
+  useEffect(() => {
+    if (profile) setProfileData(profile);
+  }, []);
 
-  const submitHandler = () => {
+  const router = useRouter();
+  const { mutate: editProfileMutate, isPending: editProfilePending } =
+    useEditProfile(profileId, router);
+
+  const { mutate: addProfileMutate, isPending: addProfilePending } =
+    useAddProfile();
+
+  const isPending = profile ? editProfilePending : addProfilePending;
+
+  const formHandler = () => {
     const newData = { ...profileData, price: +profileData.price };
     const { amenities, rules, ...rest } = newData;
 
     for (const key in rest) {
       const value = rest[key];
-      console.log(value);
 
-      if (value === undefined && value === null && value === "") {
+      if (!value) {
         return toast.error("مقادیر معتبر وارد کنید!");
       }
     }
 
-    mutate(newData);
+    if (profile) {
+      editProfileMutate(newData);
+    } else {
+      addProfileMutate(newData);
+    }
   };
 
   return (
     <div className="mb-96 border-2 p-5 rounded-xl">
       <h3 className="text-[#304ffe] bg-[#304ffe]/25 p-3 font-normal text-2xl rounded-lg">
-        ثبت آگهی
+        {profile ? "ویرایش آگهی" : "ثبت آگهی"}
       </h3>
       {textInputInfo.map((info) => (
         <TextInput
@@ -94,10 +110,10 @@ function AddProfilePage() {
         </div>
       ) : (
         <button
-          onClick={submitHandler}
+          onClick={formHandler}
           className="bg-[#304ffe] rounded-md w-full text-white py-2 mt-10 hover:bg-blue-700 transition-all duration-200 font-normal"
         >
-          ثبت آگهی
+          {profile ? "ویرایش آگهی" : "ثبت آگهی"}
         </button>
       )}
     </div>

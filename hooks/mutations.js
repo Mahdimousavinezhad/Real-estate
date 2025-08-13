@@ -41,4 +41,46 @@ const useAddProfile = () => {
   });
 };
 
-export { useRegister, useAddProfile };
+const useEditProfile = (profileId, router) => {
+  const mutationFn = async (data) =>
+    await api.patch("/api/profile", data, { params: { id: profileId } });
+
+  return useMutation({
+    mutationFn,
+    onSuccess: (data) => {
+      if (data.message) {
+        toast.success(data.message);
+        router.back();
+      } else if (data.error) {
+        toast.error(data.error);
+      }
+    },
+    onError: (data) => {
+      toast.error(data.response.data.error);
+      console.log(data);
+    },
+  });
+};
+
+const useDeleteProfile = () => {
+  const mutationFn = async (id) =>
+    await api.delete("/api/profile", { params: { id } });
+
+  return useMutation({
+    mutationFn,
+    onSuccess: (data) => {
+      if (data.message) {
+        toast.success(data.message);
+        location.reload();
+      } else if (data.error) {
+        toast.error(data.error);
+      }
+    },
+    onError: (data) => {
+      toast.error(data.response.data.error);
+      console.log(data);
+    },
+  });
+};
+
+export { useRegister, useAddProfile, useEditProfile, useDeleteProfile };

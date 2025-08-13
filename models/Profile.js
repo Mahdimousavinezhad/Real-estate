@@ -18,6 +18,10 @@ const profileSchema = new Schema(
       type: Number,
       required: true,
     },
+    phone: {
+      type: String,
+      required: true,
+    },
     realState: {
       type: String,
       required: true,
