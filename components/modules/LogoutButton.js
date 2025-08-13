@@ -15,7 +15,7 @@ function LogoutButton() {
   return (
     <button
       onClick={signOutHandler}
-      className="flex items-center gap-1 text-red-600 w-full font-normal mt-4"
+      className="flex items-center gap-1 text-red-600 w-full font-normal mt-4 max-md:justify-center"
     >
       <FiLogOut />
       خروج

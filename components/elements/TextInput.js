@@ -9,7 +9,7 @@ function TextInput({
   setProfileData,
 }) {
   const baseClass =
-    "border-dashed border-2 border-[#304ffe] py-2 px-4 rounded-md w-80 outline-none focus:border-solid";
+    "border-dashed border-2 border-[#304ffe] py-2 px-4 rounded-md w-80 outline-none focus:border-solid max-[420px]:w-60 max-[288px]:w-52";
 
   const changeHandler = (event) => {
     const { name, value } = event.target;

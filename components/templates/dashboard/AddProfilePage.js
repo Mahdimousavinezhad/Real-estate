@@ -74,7 +74,7 @@ function AddProfilePage({ profileId, profile }) {
 
       <div className="mt-8">
         <p className="text-lg font-normal mb-2">دسته بندی</p>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 max-[420px]:flex-wrap">
           {radioInputInfo.map((info) => (
             <RadioList
               key={info.id}

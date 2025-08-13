@@ -4,9 +4,13 @@ import { BiLeftArrowAlt } from "react-icons/bi";
 import icons from "@/constants/icons";
 import { sp } from "@/utils/replaceNumber";
 
-function Card({ title, category, location, price }) {
+function Card({ title, category, location, price, dashboardResponsive }) {
   return (
-    <div className="w-[250px] border-2 border-solid border-[#304ffe58] rounded-[10px] p-[10px] m-[10px]">
+    <div
+      className={`w-[250px] border-2 border-solid border-[#304ffe58] rounded-[10px] p-[10px]  ${
+        dashboardResponsive ? `max-[420px]:w-full` : null
+      }`}
+    >
       <div className="text-[1.8rem] bg-[#304ffe58] text-[#304ffe] p-[3px] rounded-[5px] w-fit">
         {icons[category]}
       </div>
