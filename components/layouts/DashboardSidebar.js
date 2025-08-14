@@ -2,7 +2,7 @@ import { getServerSession } from "next-auth";
 import { CgProfile } from "react-icons/cg";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import Link from "next/link";
-import LogoutButton from "../modules/LogoutButton";
+import LogoutButton from "../modules/dashboard/LogoutButton";
 
 async function DashboardSidebar({ children }) {
   const session = await getServerSession(authOptions);

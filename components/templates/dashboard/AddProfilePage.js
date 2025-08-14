@@ -6,8 +6,8 @@ import toast from "react-hot-toast";
 
 import RadioList from "@/components/elements/RadioList";
 import TextInput from "@/components/elements/TextInput";
-import TextList from "@/components/modules/TextList";
-import CustomeDatePicker from "@/components/modules/CustomeDatePicker";
+import TextList from "@/components/modules/dashboard/TextList";
+import CustomeDatePicker from "@/components/modules/dashboard/CustomeDatePicker";
 import Loader from "@/components/modules/Loader";
 import { radioInputInfo, textInputInfo } from "@/constants/profileFormInputs";
 import { useAddProfile, useEditProfile } from "@/hooks/mutations";
