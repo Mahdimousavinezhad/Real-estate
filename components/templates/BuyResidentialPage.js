@@ -9,7 +9,7 @@ function BuyResidentialPage({ data }) {
       </div>
       <div>
         {!data.length && (
-          <p className="text-center mt-64 font-semibold text-3xl text-rose-600">
+          <p className="text-center ml-96 mt-64 font-semibold text-3xl text-rose-600">
             هنوز هیچ آگهی ثبت نشده است !
           </p>
         )}

@@ -11,9 +11,14 @@ function CategoryCard() {
           key={index}
           className="shadow-[#304ffe4a_0px_4px_15px] py-5 px-2 rounded-[15px] transition-all duration-100 hover:rotate-[-5deg]"
         >
-          <Link href={"#"}>
+          <Link
+            href={{
+              pathname: "/buy-residential",
+              query: { category: category.name },
+            }}
+          >
             <Image
-              src={category.src}
+              src={`/images/${category.name}.png`}
               alt={category.title}
               width={260}
               height={144}
