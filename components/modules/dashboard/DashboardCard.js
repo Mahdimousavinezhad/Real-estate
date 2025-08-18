@@ -1,13 +1,13 @@
 "use client";
 
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { FiEdit } from "react-icons/fi";
 import { AiOutlineDelete } from "react-icons/ai";
 
-import Card from "./Card";
+import Card from "../Card";
 import { useDeleteProfile } from "@/hooks/mutations";
-import Loader from "./Loader";
-import { useEffect } from "react";
+import Loader from "../Loader";
 
 function DashboardCard({ data }) {
   const router = useRouter();
@@ -29,7 +29,7 @@ function DashboardCard({ data }) {
 
   return (
     <div className="flex w-full p-5 border-2 border-[#304ffe58] rounded-[15px] mb-5 max-[420px]:flex-col">
-      <Card {...data} dashboardResponsive={true} />
+      <Card data={data} dashboardResponsive={true} />
       <div className="flex items-end justify-between w-full p-[10px] max-[305px]:flex-col max-[305px]:flex-wrap max-[305px]:gap-3">
         <button
           onClick={editHandler}

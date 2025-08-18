@@ -1,5 +1,13 @@
+"use client";
+
+import Loader from "@/components/modules/Loader";
+
 function DashboardLoading() {
-  return <h1 className="text-2xl font-semibold">درحال بارگذاری...</h1>;
+  return (
+    <div className="flex flex-col justify-center items-center mt-56">
+      <Loader />
+    </div>
+  );
 }
 
 export default DashboardLoading;

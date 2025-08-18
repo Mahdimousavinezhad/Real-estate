@@ -1,6 +1,6 @@
 "use client";
 
-function DashboardError({ reset }) {
+function BuyResidentialError({ reset }) {
   return (
     <div className="flex flex-col justify-center items-center">
       <h1 className="font-semibold text-rose-600 text-3xl mt-20">
@@ -19,4 +19,4 @@ function DashboardError({ reset }) {
   );
 }
 
-export default DashboardError;
+export default BuyResidentialError;
