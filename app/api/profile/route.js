@@ -69,7 +69,8 @@ export async function PATCH(req) {
     for (const key in rest) {
       const value = rest[key];
 
-      if (!value) {
+      if (value === "" || value === undefined || value === null) {
+        // I had tried !value but it's doesn't work
         return NextResponse.json(
           { error: "مقادیر معتبر وارد کنید!" },
           { status: 422 }

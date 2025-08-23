@@ -18,7 +18,7 @@ async function DashboardPage() {
       </p>
       <div className="mt-20 flex items-center gap-3 bg-slate-300 w-fit py-1 px-2 rounded font-normal">
         <p>تاریخ عضویت:</p>
-        <span className="text-[#304ffe]">{createdAt}</span>
+        <span className="text-cs-blue">{createdAt}</span>
       </div>
     </div>
   );

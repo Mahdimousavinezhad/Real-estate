@@ -1,10 +1,10 @@
 import { FiCircle } from "react-icons/fi";
 
-import { services } from "@/constants/homePageInfo";
+import { services } from "@/constants/strings";
 
 function Banner() {
   return (
-    <div className="flex flex-col justify-center items-center mt-24 text-[#304ffe]">
+    <div className="flex flex-col justify-center items-center mt-24 text-cs-blue">
       <div>
         <h1 className="text-[3rem] mb-[30px] font-[700]">
           سامانه خرید و اجاره ملک

@@ -9,7 +9,7 @@ function Header() {
   const { status } = useSession();
 
   return (
-    <header className="flex items-center justify-between bg-[#304ffe] text-white p-3 rounded-lg mt-4">
+    <header className="flex items-center justify-between bg-cs-blue text-white p-3 rounded-lg mt-4">
       <div>
         <ul className="flex items-center gap-4">
           <li>
@@ -24,7 +24,7 @@ function Header() {
         <div>
           <Link
             href="/dashboard"
-            className="flex items-center bg-white rounded-md text-[#304ffe] p-1 hover:bg-transparent hover:text-white transition-all duration-300 hover:scale-105"
+            className="flex items-center bg-white rounded-md text-cs-blue p-1 hover:bg-transparent hover:text-white transition-all duration-300 hover:scale-105"
           >
             <FaUserAlt className="text-[25px]" />
           </Link>

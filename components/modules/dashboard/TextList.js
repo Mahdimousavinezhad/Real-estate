@@ -33,7 +33,7 @@ function TextList({ type, title, profileData, setProfileData }) {
               type="text"
               value={inp}
               onChange={(e) => changeHandler(e, index)}
-              className="border-dashed border-2 border-[#304ffe] py-1 px-4 rounded-md w-80 outline-none focus:border-solid"
+              className="border-dashed border-2 border-cs-blue py-1 px-4 rounded-md w-80 outline-none focus:border-solid"
             />
             <button
               className="border-2 border-rose-600 font-normal py-1 px-3 text-rose-600 flex items-center gap-2 rounded-lg hover:bg-rose-700 hover:text-white transition-all duration-200"
@@ -46,7 +46,7 @@ function TextList({ type, title, profileData, setProfileData }) {
         ))}
         <button
           onClick={addHandler}
-          className=" bg-[#304ffe] py-1 px-3 text-white flex items-center gap-2 rounded-lg mt-2 hover:bg-blue-700 transition-all duration-200"
+          className=" bg-cs-blue py-1 px-3 text-white flex items-center gap-2 rounded-lg mt-2 hover:bg-blue-700 transition-all duration-200"
         >
           افزودن
           <MdOutlineLibraryAdd />

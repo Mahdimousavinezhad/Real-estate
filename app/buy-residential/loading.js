@@ -2,12 +2,12 @@
 
 import Loader from "@/components/modules/Loader";
 
-function BuyResidentialLoading() {
+function DashboardLoading() {
   return (
-    <div className="flex flex-col justify-center items-center mt-96">
+    <div className="flex flex-col justify-center items-center mt-56">
       <Loader />
     </div>
   );
 }
 
-export default BuyResidentialLoading;
+export default DashboardLoading;

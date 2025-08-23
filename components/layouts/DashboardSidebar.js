@@ -10,11 +10,11 @@ async function DashboardSidebar({ children }) {
   return (
     <div className="flex justify-between mt-20 gap-7 max-md:flex-col max-md:justify-center max-md:items-center">
       <div className="flex flex-col items-center h-fit py-[30px] px-[15px] rounded-[10px] shadow-[#304ffe4a_0px_4px_15px] w-[220px] max-md:w-96 max-md:text-center max-[420px]:w-60 max-[288px]:w-56">
-        <CgProfile className="text-[3rem] text-[#304ffe]" />
+        <CgProfile className="text-[3rem] text-cs-blue" />
         <p className="text-grey text-[1.1rem] font-normal mt-5">
           {session?.user.email}
         </p>
-        <span className="bg-[#304ffe] w-full h-[1px] mb-[30px]"></span>
+        <span className="bg-cs-blue w-full h-[1px] mb-[30px]"></span>
         <Link href="/dashboard" className="my-[5px] font-normal w-full">
           حساب کاربری
         </Link>

@@ -16,8 +16,8 @@ function RadioList({
   };
 
   return (
-    <div className="bg-[#304ffe]/25 py-1 px-3 w-fit rounded-lg flex items-center gap-2">
-      <label htmlFor={id} className="text-[#304ffe]">
+    <div className="bg-cs-blue/25 py-1 px-3 w-fit rounded-lg flex items-center gap-2">
+      <label htmlFor={id} className="text-cs-blue">
         {title}
       </label>
       <input

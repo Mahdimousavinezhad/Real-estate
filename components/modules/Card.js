@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import { BiLeftArrowAlt } from "react-icons/bi";
+
 import icons from "@/constants/icons";
 import { sp } from "@/utils/replaceNumber";
 
@@ -11,7 +12,7 @@ function Card({ data, dashboardResponsive, residentialResponsive }) {
         dashboardResponsive ? `max-[420px]:w-full` : null
       } ${residentialResponsive ? `max-md:w-full` : null}`}
     >
-      <div className="text-[1.8rem] bg-[#304ffe58] text-[#304ffe] p-[3px] rounded-[5px] w-fit">
+      <div className="text-[1.8rem] bg-[#304ffe58] text-cs-blue p-[3px] rounded-[5px] w-fit">
         {icons[data?.category]}
       </div>
       <p className="font-normal my-[10px]">{data?.title}</p>
@@ -23,8 +24,8 @@ function Card({ data, dashboardResponsive, residentialResponsive }) {
         {sp(data?.price)} تومان
       </span>
       <Link
-        href="/"
-        className="flex items-center justify-between mt-5 text-[0.95rem] font-normal text-[#304ffe]"
+        href={`/buy-residential/${data._id}`}
+        className="flex items-center justify-between mt-5 text-[0.95rem] font-normal text-cs-blue"
       >
         مشاهده آگهی
         <BiLeftArrowAlt className="text-[1.5rem]" />

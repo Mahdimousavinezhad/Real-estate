@@ -11,7 +11,7 @@ function DashboardError({ reset }) {
       </p>
       <button
         onClick={reset}
-        className="mt-7 bg-[#304ffe] text-white font-normal rounded-lg py-2 px-4 transition-all duration-200 hover:bg-blue-500"
+        className="mt-7 bg-cs-blue text-white font-normal rounded-lg py-2 px-4 transition-all duration-200 hover:bg-blue-500"
       >
         تلاش مجدد
       </button>

@@ -1,6 +1,6 @@
 function Footer() {
   return (
-    <footer className="flex justify-between items-center bg-[#304ffe] p-4 text-white rounded-lg mb-4 max-md:flex-col max-md:gap-4 max-md:items-start max-md:px-5">
+    <footer className="flex justify-between items-center bg-cs-blue p-4 text-white rounded-lg mb-4 max-md:flex-col max-md:gap-4 max-md:items-start max-md:px-5">
       <div className="self-start">
         <h3 className="mb-4 text-[1.4rem] font-semibold">
           سامانه خرید و اجاره ملک

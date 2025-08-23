@@ -17,7 +17,7 @@ const useRegister = (router) => {
       }
     },
     onError: (data) => {
-      console.log(data);
+      toast.error(data.response.data.error);
     },
   });
 };
@@ -36,7 +36,6 @@ const useAddProfile = () => {
     },
     onError: (data) => {
       toast.error(data.response.data.error);
-      console.log(data);
     },
   });
 };
@@ -57,7 +56,6 @@ const useEditProfile = (profileId, router) => {
     },
     onError: (data) => {
       toast.error(data.response.data.error);
-      console.log(data);
     },
   });
 };
@@ -78,7 +76,6 @@ const useDeleteProfile = () => {
     },
     onError: (data) => {
       toast.error(data.response.data.error);
-      console.log(data);
     },
   });
 };

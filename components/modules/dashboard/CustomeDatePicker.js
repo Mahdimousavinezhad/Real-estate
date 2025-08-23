@@ -18,7 +18,7 @@ function CustomeDatePicker({ profileData, setProfileData }) {
           calendarPosition="bottom-right"
           value={profileData.constructionDate}
           onChange={changeHandler}
-          inputClass="border-dashed border-2 border-[#304ffe] py-2 px-4 rounded-md w-60 outline-none focus:border-solid"
+          inputClass="border-dashed border-2 border-cs-blue py-2 px-4 rounded-md w-60 outline-none focus:border-solid"
         />
       </div>
     </div>

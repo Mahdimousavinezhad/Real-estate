@@ -7,7 +7,7 @@ function BuyResidentialPage({ data }) {
       <div>
         <Sidebar />
       </div>
-      <div>
+      <div className="w-full">
         {!data.length && (
           <p className="text-center ml-96 mt-64 font-semibold text-3xl text-rose-600">
             هنوز هیچ آگهی ثبت نشده است !

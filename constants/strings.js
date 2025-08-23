@@ -1,3 +1,23 @@
+const services = ["خرید", "فروش", "رهن", "اجاره"];
+
+const cities = [
+  "تهران",
+  "سنندج",
+  "کرمانشاه",
+  "اهواز",
+  "مشهد",
+  "اصفهان",
+  "شیراز",
+  "خرم آباد",
+];
+
+const categories = {
+  villa: "خانه ویلایی",
+  apartment: "آپارتمان",
+  store: "مغازه",
+  office: "دفترکار",
+};
+
 const textInputInfo = [
   {
     id: 1,
@@ -74,4 +94,4 @@ const radioInputInfo = [
   },
 ];
 
-export { textInputInfo, radioInputInfo };
+export { services, cities, categories, radioInputInfo, textInputInfo };

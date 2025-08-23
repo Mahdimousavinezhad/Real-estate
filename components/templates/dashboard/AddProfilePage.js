@@ -9,7 +9,7 @@ import TextInput from "@/components/elements/TextInput";
 import TextList from "@/components/modules/dashboard/TextList";
 import CustomeDatePicker from "@/components/modules/dashboard/CustomeDatePicker";
 import Loader from "@/components/modules/Loader";
-import { radioInputInfo, textInputInfo } from "@/constants/profileFormInputs";
+import { radioInputInfo, textInputInfo } from "@/constants/strings";
 import { useAddProfile, useEditProfile } from "@/hooks/mutations";
 
 function AddProfilePage({ profileId, profile }) {
@@ -46,7 +46,8 @@ function AddProfilePage({ profileId, profile }) {
     for (const key in rest) {
       const value = rest[key];
 
-      if (!value) {
+      if (value === "" || value === undefined || value === null) {
+        // I had tried !value but it's doesn't work
         return toast.error("مقادیر معتبر وارد کنید!");
       }
     }
@@ -60,7 +61,7 @@ function AddProfilePage({ profileId, profile }) {
 
   return (
     <div className="mb-96 border-2 p-5 rounded-xl">
-      <h3 className="text-[#304ffe] bg-[#304ffe]/25 p-3 font-normal text-2xl rounded-lg">
+      <h3 className="text-cs-blue bg-cs-blue/25 p-3 font-normal text-2xl rounded-lg">
         {profile ? "ویرایش آگهی" : "ثبت آگهی"}
       </h3>
       {textInputInfo.map((info) => (
@@ -111,7 +112,7 @@ function AddProfilePage({ profileId, profile }) {
       ) : (
         <button
           onClick={formHandler}
-          className="bg-[#304ffe] rounded-md w-full text-white py-2 mt-10 hover:bg-blue-700 transition-all duration-200 font-normal"
+          className="bg-cs-blue rounded-md w-full text-white py-2 mt-10 hover:bg-blue-700 transition-all duration-200 font-normal"
         >
           {profile ? "ویرایش آگهی" : "ثبت آگهی"}
         </button>
