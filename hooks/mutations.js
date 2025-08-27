@@ -101,8 +101,9 @@ const usePublishProfile = (router) => {
     onSuccess: (data) => {
       if (data.message) {
         toast.success(data.message);
+        // router.refresh() I had used this but its dosen't work
+        location.reload();
         router.push("/dashboard/admin"); // This is for dynamic route like: /dashboard/admin/[profileId]
-        router.refresh();
       } else if (data.error) {
         toast.error(data.error);
         console.log(data);
@@ -123,8 +124,9 @@ const useDeleteProfileAdmin = (router) => {
     onSuccess: (data) => {
       if (data.message) {
         toast.success(data.message);
+        // router.refresh() I had used this but its dosen't work
+        location.reload();
         router.push("/dashboard/admin"); // This is for dynamic route like: /dashboard/admin/[profileId]
-        router.refresh();
       } else if (data.error) {
         toast.error(data.error);
         console.log(data);

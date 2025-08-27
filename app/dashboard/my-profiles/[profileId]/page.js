@@ -2,9 +2,8 @@ import AddProfilePage from "@/components/templates/dashboard/AddProfilePage";
 import Profile from "@/models/Profile";
 import connectDB from "@/utils/connectDB";
 
-async function ProfileId({ params }) {
+async function ProfileId({ params: { profileId } }) {
   await connectDB();
-  const profileId = params.profileId;
   const profile = await Profile.findOne({ _id: profileId });
 
   return (
