@@ -9,9 +9,11 @@ import { e2p, sp } from "@/utils/replaceNumber";
 import icons from "@/constants/icons";
 import { categories } from "@/constants/strings";
 import ShareButton from "../modules/profile-details/ShareButton";
+import AdminOptions from "../modules/dashboard/AdminOptions";
 
 function ProfileDetailsPage({
   data: {
+    _id,
     title,
     location,
     description,
@@ -22,11 +24,26 @@ function ProfileDetailsPage({
     category,
     price,
     constructionDate,
+    published,
   },
+  role,
 }) {
-  return (
-    <div className="flex my-[60px] max-[480px]:flex-col-reverse max-[480px]:gap-10">
+  return role === "ADMIN" && published === true ? (
+    <h1 className="text-center font-semibold text-2xl text-rose-600">
+      این آگهی از قبل منتشر شده است!
+    </h1>
+  ) : (
+    <div
+      className={`flex my-[60px] max-[480px]:flex-col-reverse max-[480px]:gap-10 ${
+        role === "ADMIN" ? "border-2 p-5 rounded-xl mt-0 mb-[60px]" : null
+      }`}
+    >
       <div className="w-full">
+        {role === "ADMIN" && published === false && (
+          <p className="bg-green-200 rounded-lg text-green-700 font-normal text-xl p-3 w-full mb-5">
+            فقط ادمین ها به این صفحه دسترسی دارند!
+          </p>
+        )}
         <h1 className="text-cs-blue text-[1.3rem] font-normal mb-[10px]">
           {title}
         </h1>
@@ -64,6 +81,9 @@ function ProfileDetailsPage({
             {new Date(constructionDate).toLocaleDateString("FA-IR")}
           </p>
         </div>
+        {role === "ADMIN" && (
+          <AdminOptions id={JSON.parse(JSON.stringify(_id))} />
+        )}
       </div>
     </div>
   );

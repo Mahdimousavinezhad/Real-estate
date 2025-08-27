@@ -22,7 +22,7 @@ const useRegister = (router) => {
   });
 };
 
-const useAddProfile = () => {
+const useAddProfile = (setProfileData) => {
   const mutationFn = async (data) => await api.post("/api/profile", data);
 
   return useMutation({
@@ -30,6 +30,18 @@ const useAddProfile = () => {
     onSuccess: (data) => {
       if (data.message) {
         toast.success(data.message);
+        setProfileData({
+          title: "",
+          description: "",
+          location: "",
+          price: 0,
+          phone: "",
+          realState: "",
+          constructionDate: new Date(),
+          category: "",
+          rules: [],
+          amenities: [],
+        });
       } else if (data.error) {
         toast.error(data.error);
       }
@@ -80,4 +92,55 @@ const useDeleteProfile = () => {
   });
 };
 
-export { useRegister, useAddProfile, useEditProfile, useDeleteProfile };
+const usePublishProfile = (router) => {
+  const mutationFn = async (id) =>
+    await api.patch(`/api/profile/admin?id=${id}`);
+
+  return useMutation({
+    mutationFn,
+    onSuccess: (data) => {
+      if (data.message) {
+        toast.success(data.message);
+        router.push("/dashboard/admin"); // This is for dynamic route like: /dashboard/admin/[profileId]
+        router.refresh();
+      } else if (data.error) {
+        toast.error(data.error);
+        console.log(data);
+      }
+    },
+    onError: (data) => {
+      toast.error(data.response.data.error);
+    },
+  });
+};
+
+const useDeleteProfileAdmin = (router) => {
+  const mutationFn = async (id) =>
+    await api.delete(`/api/profile/admin?id=${id}`);
+
+  return useMutation({
+    mutationFn,
+    onSuccess: (data) => {
+      if (data.message) {
+        toast.success(data.message);
+        router.push("/dashboard/admin"); // This is for dynamic route like: /dashboard/admin/[profileId]
+        router.refresh();
+      } else if (data.error) {
+        toast.error(data.error);
+        console.log(data);
+      }
+    },
+    onError: (data) => {
+      toast.error(data.response.data.error);
+    },
+  });
+};
+
+export {
+  useRegister,
+  useAddProfile,
+  useEditProfile,
+  useDeleteProfile,
+  useDeleteProfileAdmin,
+  usePublishProfile,
+};

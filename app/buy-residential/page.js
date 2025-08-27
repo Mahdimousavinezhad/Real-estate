@@ -4,7 +4,8 @@ import BuyResidentialPage from "@/components/templates/BuyResidentialPage";
 import { getProfiles } from "@/services/profiles";
 
 async function BuyResidentials({ searchParams }) {
-  const data = await getProfiles(searchParams); // I did get data directly from own api/server
+  const published = true;
+  const data = await getProfiles(searchParams, published); // I did get data directly from own api/server
 
   return <BuyResidentialPage data={data} />;
 }

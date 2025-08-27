@@ -1,27 +1,6 @@
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import User from "@/models/User";
-import connectDB from "@/utils/connectDB";
 import DashboardCard from "@/components/modules/dashboard/DashboardCard";
 
-async function MyProfilesPage() {
-  await connectDB();
-  const session = await getServerSession(authOptions);
-  const [user] = await User.aggregate([
-    {
-      $match: { email: session.user.email },
-    },
-    {
-      $lookup: {
-        from: "profiles",
-        foreignField: "userId",
-        localField: "_id",
-        as: "profiles",
-      },
-    },
-  ]);
-  const profilesData = user.profiles;
-
+async function MyProfilesPage({ profilesData }) {
   return (
     <div className="mb-96 border-2 p-5 rounded-xl">
       {!profilesData.length && (

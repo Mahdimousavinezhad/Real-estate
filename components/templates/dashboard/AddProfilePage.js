@@ -17,7 +17,7 @@ function AddProfilePage({ profileId, profile }) {
     title: "",
     description: "",
     location: "",
-    price: null,
+    price: 0,
     phone: "",
     realState: "",
     constructionDate: new Date(),
@@ -35,7 +35,7 @@ function AddProfilePage({ profileId, profile }) {
     useEditProfile(profileId, router);
 
   const { mutate: addProfileMutate, isPending: addProfilePending } =
-    useAddProfile();
+    useAddProfile(setProfileData);
 
   const isPending = profile ? editProfilePending : addProfilePending;
 

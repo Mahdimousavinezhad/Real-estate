@@ -1,7 +1,7 @@
 import Profile from "@/models/Profile";
 import connectDB from "@/utils/connectDB";
 
-const getProfiles = async (searchParams) => {
+const getProfiles = async (searchParams, published) => {
   await connectDB();
 
   let query = {};
@@ -14,7 +14,9 @@ const getProfiles = async (searchParams) => {
     }
   }
 
-  const profiles = await Profile.find(query).select("-userId");
+  const newQuery = { ...query, published };
+
+  const profiles = await Profile.find(newQuery).select("-userId");
 
   return profiles;
 };

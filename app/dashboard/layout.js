@@ -1,14 +1,19 @@
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]/route";
+import connectDB from "@/utils/connectDB";
 
 import DashboardSidebar from "@/components/layouts/DashboardSidebar";
+import User from "@/models/User";
 
 async function DashboardLayout({ children }) {
   const session = await getServerSession(authOptions);
   if (!session) redirect("/signin");
 
-  return <DashboardSidebar>{children}</DashboardSidebar>;
+  await connectDB();
+  const user = await User.findOne({ email: session.user.email });
+
+  return <DashboardSidebar user={user}>{children}</DashboardSidebar>;
 }
 
 export default DashboardLayout;
