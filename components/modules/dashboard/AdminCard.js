@@ -38,7 +38,7 @@ function AdminCard({ profile: { _id, title, description, location, price } }) {
         <span>{location}</span>
         <span>{sp(price)}</span>
       </div>
-      <div className="flex items-center gap-4 *:h-8 *:w-24 *:text-[1rem] *:font-normal *:text-white *:rounded-[5px] *:cursor-pointer *:mt-5 *:transition-all *:ease-in *:duration-100 max-[280px]:flex-col max-[280px]:*:w-full">
+      <div className="flex items-center gap-4 *:h-8 *:w-24 *:text-[1rem] *:font-normal *:text-white *:rounded-[5px] *:cursor-pointer *:mt-5 *:transition-all *:ease-in *:duration-100 max-[360px]:flex-col max-[360px]:*:w-full">
         <button className="bg-cs-blue hover:bg-transparent hover:border hover:border-cs-blue hover:text-black">
           <Link
             href={`/dashboard/admin/${_id}`}

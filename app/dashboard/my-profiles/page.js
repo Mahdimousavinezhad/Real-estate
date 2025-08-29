@@ -5,7 +5,7 @@ import User from "@/models/User";
 import connectDB from "@/utils/connectDB";
 import MyProfilesPage from "@/components/templates/dashboard/MyProfilesPage";
 
-async function MyProfiles() {
+async function MyProfiles({ searchParams }) {
   await connectDB();
   const session = await getServerSession(authOptions);
   const [user] = await User.aggregate([
@@ -23,6 +23,8 @@ async function MyProfiles() {
   ]);
   const profilesData = user.profiles;
 
-  return <MyProfilesPage profilesData={profilesData} />;
+  return (
+    <MyProfilesPage profilesData={profilesData} searchParams={searchParams} />
+  );
 }
 export default MyProfiles;

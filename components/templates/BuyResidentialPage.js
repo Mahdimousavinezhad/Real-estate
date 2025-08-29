@@ -1,5 +1,6 @@
 import Sidebar from "../modules/buy-residential/Sidebar";
 import Card from "../modules/Card";
+import SearchBar from "../modules/SearchBar";
 
 function BuyResidentialPage({ data }) {
   return (
@@ -8,6 +9,11 @@ function BuyResidentialPage({ data }) {
         <Sidebar />
       </div>
       <div className="w-full">
+        <SearchBar
+          data={JSON.parse(JSON.stringify(data))}
+          text={"تعداد کل آگهی های مربوطه:"}
+        />
+        <p className="border-2 my-5"></p>
         {!data.length && (
           <p className="text-center mt-64 font-semibold text-3xl text-rose-600">
             هنوز هیچ آگهی ثبت نشده است !

@@ -9,7 +9,10 @@ const getProfiles = async (searchParams, published) => {
   if (searchParams) {
     for (const key in searchParams) {
       if (searchParams[key]) {
-        query[key] = searchParams[key];
+        query[key] = {
+          $regex: searchParams[key],
+          $options: "i",
+        };
       }
     }
   }
