@@ -104,7 +104,7 @@ const usePublishProfile = (router) => {
         // router.refresh() I had used this but its dosen't work
         router.push("/dashboard/admin"); // This is for dynamic route like: /dashboard/admin/[profileId]
         setTimeout(() => {
-          location.reload();
+          window.location.reload();
         }, 1000);
       } else if (data.error) {
         toast.error(data.error);
@@ -129,7 +129,7 @@ const useDeleteProfileAdmin = (router) => {
         // router.refresh() I had used this but its dosen't work
         router.push("/dashboard/admin"); // This is for dynamic route like: /dashboard/admin/[profileId]
         setTimeout(() => {
-          location.reload();
+          window.location.reload();
         }, 1000);
       } else if (data.error) {
         toast.error(data.error);

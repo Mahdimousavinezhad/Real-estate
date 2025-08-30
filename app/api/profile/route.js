@@ -6,6 +6,80 @@ import Profile from "@/models/Profile";
 import User from "@/models/User";
 import connectDB from "@/utils/connectDB";
 
+export async function GET(req) {
+  try {
+    await connectDB();
+
+    const session = await getServerSession(req);
+
+    const user = await User.findOne({ email: session?.user?.email });
+
+    const searchParams = Object.fromEntries(req.nextUrl.searchParams.entries());
+
+    let {
+      page: pages = 1,
+      limit: limits = 9,
+      userOnly = false,
+      published = false,
+      ...rest
+    } = searchParams;
+
+    if (published === "true") {
+      published = true;
+    } else if (published === "false") {
+      published = false;
+    }
+
+    if (userOnly === "true") {
+      userOnly = true;
+    } else {
+      userOnly = false;
+    }
+
+    const page = +pages;
+    const limit = +limits;
+    const skip = (page - 1) * limit;
+
+    let query = {};
+
+    if (published !== "none") {
+      query.published = published;
+    } else {
+      delete query.published;
+    }
+
+    if (rest) {
+      for (const key in rest) {
+        if (rest[key]) {
+          query[key] = {
+            $regex: rest[key],
+            $options: "i",
+          };
+        }
+      }
+    }
+
+    if (userOnly && user) {
+      query.userId = user._id;
+    }
+
+    const total = await Profile.countDocuments(query);
+    const totalPages = Math.ceil(total / limit);
+
+    const profiles = await Profile.find(query)
+      .skip(skip)
+      .limit(limit)
+      .select("-userId");
+
+    return NextResponse.json({ profiles, page, totalPages }, { status: 200 });
+  } catch (error) {
+    return NextResponse.json(
+      { error: "مشکلی در سمت سرور پیش آمده است!" },
+      { status: 500 }
+    );
+  }
+}
+
 export async function POST(req) {
   try {
     await connectDB();
@@ -61,7 +135,7 @@ export async function PATCH(req) {
   try {
     await connectDB();
     const body = await req.json();
-    const searchParams = req.nextUrl.searchParams;
+    const { searchParams } = req.nextUrl;
     const id = searchParams.get("id");
 
     const { amenities, rules, ...rest } = body;
@@ -122,7 +196,7 @@ export async function PATCH(req) {
 export async function DELETE(req) {
   try {
     await connectDB();
-    const searchParams = req.nextUrl.searchParams;
+    const { searchParams } = req.nextUrl;
     const id = searchParams.get("id");
 
     const session = await getServerSession(req);

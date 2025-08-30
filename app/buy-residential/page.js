@@ -1,11 +1,12 @@
 export const dynamic = "force-dynamic"; // This page is Server Side Rendering || SSR
 
 import BuyResidentialPage from "@/components/templates/BuyResidentialPage";
-import { getProfiles } from "@/services/profiles";
+import api from "@/configs/api";
 
 async function BuyResidentials({ searchParams }) {
-  const published = true;
-  const data = await getProfiles(searchParams, published); // I did get data directly from own api/server
+  const data = await api.get("/api/profile?published=true", {
+    params: searchParams,
+  });
 
   return <BuyResidentialPage data={data} />;
 }
