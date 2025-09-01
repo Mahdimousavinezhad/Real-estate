@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 function Paginations({ data: { page, totalPages } }) {
@@ -32,7 +32,7 @@ function Paginations({ data: { page, totalPages } }) {
   };
 
   const changePageHandler = (event) => {
-    if (+query.page >= 1 && +page <= +totalPages) {
+    if (+page >= 1) {
       setQuery((prev) => ({ ...prev, page: String(+event.target.innerText) }));
     }
   };
@@ -69,18 +69,20 @@ function Paginations({ data: { page, totalPages } }) {
 
         {+query.page < totalPages - 1 && <span>...</span>}
 
-        {+query.page !== totalPages - 1 && totalPages - 1 !== 1 && (
-          <p
-            onClick={changePageHandler}
-            className={`py-1 px-3 rounded border cursor-pointer ${
-              query.page === String(totalPages - 1)
-                ? "bg-cs-blue text-white"
-                : "border-cs-blue"
-            }`}
-          >
-            {totalPages - 1}
-          </p>
-        )}
+        {+query.page !== totalPages - 1 &&
+          totalPages - 1 !== 1 &&
+          totalPages - 1 !== 0 && (
+            <p
+              onClick={changePageHandler}
+              className={`py-1 px-3 rounded border cursor-pointer ${
+                query.page === String(totalPages - 1)
+                  ? "bg-cs-blue text-white"
+                  : "border-cs-blue"
+              }`}
+            >
+              {totalPages - 1}
+            </p>
+          )}
 
         {totalPages > 1 && (
           <p
