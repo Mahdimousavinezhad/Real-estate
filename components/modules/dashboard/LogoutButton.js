@@ -4,7 +4,7 @@ import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { FiLogOut } from "react-icons/fi";
 
-function LogoutButton() {
+function LogoutButton({ dropdown }) {
   const router = useRouter();
 
   const signOutHandler = () => {
@@ -15,7 +15,9 @@ function LogoutButton() {
   return (
     <button
       onClick={signOutHandler}
-      className="flex items-center gap-1 text-red-600 w-full font-normal mt-4 max-md:justify-center"
+      className={`flex items-center gap-1 w-full  !text-red-600 font-normal max-md:justify-center ${
+        !dropdown ? "mt-4" : null
+      }`}
     >
       <FiLogOut />
       خروج
