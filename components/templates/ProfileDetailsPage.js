@@ -10,6 +10,7 @@ import icons from "@/constants/icons";
 import { categories } from "@/constants/strings";
 import ShareButton from "../modules/profile-details/ShareButton";
 import AdminOptions from "../modules/dashboard/AdminOptions";
+import FavoriteButton from "../modules/profile-details/FavoriteButton";
 
 function ProfileDetailsPage({
   data: {
@@ -25,6 +26,7 @@ function ProfileDetailsPage({
     price,
     constructionDate,
     published,
+    favorite,
   },
   role,
 }) {
@@ -70,6 +72,9 @@ function ProfileDetailsPage({
           </span>
         </div>
         <ShareButton />
+        <FavoriteButton
+          data={JSON.parse(JSON.stringify({ id: _id, favorite }))}
+        />
         <div className="flex flex-col items-center !p-[20px_0_0] *:flex *:items-center *:text-gray-500 *:mb-5 *:h-5 *:gap-1">
           <p>
             {icons[category]}

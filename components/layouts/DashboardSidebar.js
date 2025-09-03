@@ -23,6 +23,12 @@ async function DashboardSidebar({ children, user }) {
         >
           آگهی های من
         </Link>
+        <Link
+          href="/dashboard/favorites"
+          className="my-[5px] font-normal w-full"
+        >
+          آگهی های مورد علاقه
+        </Link>
         <Link href="/dashboard/add" className="my-[5px] font-normal w-full">
           ثبت آگهی
         </Link>

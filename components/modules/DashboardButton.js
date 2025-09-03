@@ -1,16 +1,25 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { FiLogIn } from "react-icons/fi";
 import { FaUserAlt } from "react-icons/fa";
+import { FaRegUser } from "react-icons/fa";
+import { RiFileList3Line } from "react-icons/ri";
+
 import LogoutButton from "./dashboard/LogoutButton";
-import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 
 function DashboardButton() {
   const { status } = useSession();
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef();
+  const pathname = usePathname();
+
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
 
   useEffect(() => {
     window.addEventListener("click", () => {
@@ -33,10 +42,19 @@ function DashboardButton() {
             {open && (
               <div
                 onClick={(e) => e.stopPropagation()}
-                className="flex flex-col mx-auto gap-2 absolute *:text-black bg-white rounded-lg top-11 w-40 border -right-28 p-4 shadow-lg"
+                className="flex flex-col mx-auto gap-3 absolute *:text-black bg-white rounded-lg top-11 w-40 border -right-28 p-4 shadow-lg"
               >
-                <Link href={"/dashboard"}>حساب کاربری</Link>
-                <Link href={"/dashboard/my-profiles"}>پروفایل های من</Link>
+                <Link href={"/dashboard"} className="flex items-center gap-2">
+                  <FaRegUser className="self-start" />
+                  حساب کاربری
+                </Link>
+                <Link
+                  href={"/dashboard/my-profiles"}
+                  className="flex items-center gap-2"
+                >
+                  <RiFileList3Line className="self-start" />
+                  آگهی های من
+                </Link>
                 <LogoutButton dropdown={true} />
               </div>
             )}

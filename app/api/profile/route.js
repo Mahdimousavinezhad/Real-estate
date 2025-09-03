@@ -21,6 +21,7 @@ export async function GET(req) {
       limit: limits = 9,
       userOnly = false,
       published = false,
+      favorite = false,
       ...rest
     } = searchParams;
 
@@ -46,6 +47,12 @@ export async function GET(req) {
       query.published = published;
     } else {
       delete query.published;
+    }
+
+    if (favorite === "true") {
+      query.favorite = true;
+    } else {
+      delete query.favorite;
     }
 
     if (rest) {

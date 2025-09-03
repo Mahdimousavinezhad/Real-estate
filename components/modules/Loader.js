@@ -1,10 +1,10 @@
 import { ThreeDots } from "react-loader-spinner";
 
-function Loader({ isPending }) {
+function Loader({ isPending, favoriteLoader }) {
   return (
     <ThreeDots
       visible={isPending}
-      height="50"
+      height={`${favoriteLoader ? "22" : "50"}`}
       width="80"
       color="#304ffe"
       radius="9"

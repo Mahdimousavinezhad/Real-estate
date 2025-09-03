@@ -71,7 +71,8 @@ function Paginations({ data: { page, totalPages } }) {
 
         {+query.page !== totalPages - 1 &&
           totalPages - 1 !== 1 &&
-          totalPages - 1 !== 0 && (
+          totalPages - 1 !== 0 &&
+          totalPages - 1 !== -1 && (
             <p
               onClick={changePageHandler}
               className={`py-1 px-3 rounded border cursor-pointer ${

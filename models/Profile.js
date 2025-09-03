@@ -51,6 +51,10 @@ const profileSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    favorite: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );
