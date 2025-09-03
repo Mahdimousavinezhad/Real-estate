@@ -17,7 +17,11 @@ async function DashboardLayout({ children }) {
   await connectDB();
   const user = await User.findOne({ email: session.user.email });
 
-  return <DashboardSidebar user={user}>{children}</DashboardSidebar>;
+  return (
+    <DashboardSidebar user={JSON.parse(JSON.stringify(user))}>
+      {children}
+    </DashboardSidebar>
+  );
 }
 
 export default DashboardLayout;

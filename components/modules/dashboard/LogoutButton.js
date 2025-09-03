@@ -15,8 +15,10 @@ function LogoutButton({ dropdown }) {
   return (
     <button
       onClick={signOutHandler}
-      className={`flex items-center gap-1 w-full  !text-red-600 font-normal max-md:justify-center ${
-        !dropdown ? "mt-4" : null
+      className={`flex items-center gap-1 w-full !text-red-600 font-normal max-md:justify-center ${
+        !dropdown
+          ? "mt-4 transition-all hover:bg-rose-200 rounded-lg py-2 px-2 hover:-translate-x-1"
+          : null
       }`}
     >
       <FiLogOut />
