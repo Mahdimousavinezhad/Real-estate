@@ -1,8 +1,27 @@
+import { getServerSession } from "next-auth";
+import { NextResponse } from "next/server";
+
 import Profile from "@/models/Profile";
 import User from "@/models/User";
 import connectDB from "@/utils/connectDB";
-import { getServerSession } from "next-auth";
-import { NextResponse } from "next/server";
+
+export async function GET(req) {
+  try {
+    await connectDB();
+
+    const { searchParams } = req.nextUrl;
+    const id = searchParams.get("id");
+
+    const profile = await Profile.findOne({ _id: id });
+
+    return NextResponse.json({ data: profile }, { status: 200 });
+  } catch (error) {
+    return NextResponse.json(
+      { error: "مشکلی در سمت سرور پیش آمده است!" },
+      { status: 500 }
+    );
+  }
+}
 
 export async function PATCH(req) {
   try {
@@ -67,43 +86,3 @@ export async function PATCH(req) {
     );
   }
 }
-
-// export async function DELETE(req) {
-//   try {
-//     await connectDB();
-
-//     const session = await getServerSession(req);
-
-//     if (!session) {
-//       return NextResponse.json(
-//         { error: "لطفا وارد حساب کاربری خود شوید!" },
-//         { status: 401 }
-//       );
-//     }
-
-//     const user = await User.findOne({ email: session.user.email });
-
-//     if (!user) {
-//       return NextResponse.json(
-//         { error: "حساب کاربری شما یافت نشد!" },
-//         { status: 404 }
-//       );
-//     }
-
-//     const { searchParams } = req.nextUrl;
-//     const id = searchParams.get("id");
-
-//     await Profile.deleteOne({ _id: id });
-//     return NextResponse.json(
-//       {
-//         message: `آگهی از بخش آگهی مورد علاقه ها حذف شد!`,
-//       },
-//       { status: 200 }
-//     );
-//   } catch (error) {
-//     return NextResponse.json(
-//       { error: "مشکلی در سمت سرور پیش آمده است!" },
-//       { status: 500 }
-//     );
-//   }
-// }

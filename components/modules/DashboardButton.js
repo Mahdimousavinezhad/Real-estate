@@ -1,15 +1,16 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { FiLogIn } from "react-icons/fi";
 import { FaUserAlt } from "react-icons/fa";
 import { FaRegUser } from "react-icons/fa";
 import { RiFileList3Line } from "react-icons/ri";
+import { MdFavoriteBorder } from "react-icons/md";
 
 import LogoutButton from "./dashboard/LogoutButton";
-import { usePathname } from "next/navigation";
 
 function DashboardButton() {
   const { status } = useSession();
@@ -54,6 +55,13 @@ function DashboardButton() {
                 >
                   <RiFileList3Line className="self-start" />
                   آگهی های من
+                </Link>
+                <Link
+                  href={"/dashboard/favorites"}
+                  className="flex items-center gap-2"
+                >
+                  <MdFavoriteBorder className="self-start" />
+                  موردعلاقه ها
                 </Link>
                 <LogoutButton dropdown={true} />
               </div>

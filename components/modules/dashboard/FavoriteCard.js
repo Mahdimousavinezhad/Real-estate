@@ -15,10 +15,14 @@ function FavoriteCard({ data, dashboardResponsive, residentialResponsive }) {
       <div className="text-[1.8rem] bg-[#304ffe58] text-cs-blue p-[3px] rounded-[5px] w-fit">
         {icons[data?.category]}
       </div>
-      <p className="font-normal my-[10px]">{data?.title}</p>
+      <p className="font-normal my-[10px]">
+        {data.title.length > 15 ? `${data.title.slice(0, 15)}...` : data.title}
+      </p>
       <p className="flex items-center text-grey text-[0.9rem] gap-[5px]">
         <HiOutlineLocationMarker className="text-[1rem]" />
-        {data.location}
+        {data.location.length > 15
+          ? `${data.location.slice(0, 15)}...`
+          : data.location}
       </p>
       <span className="mt-[10px] text-gray block text-[0.9rem] font-normal">
         {sp(data?.price)} تومان

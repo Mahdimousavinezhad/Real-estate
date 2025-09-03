@@ -11,7 +11,9 @@ function DeleteFavoriteButton({ id, favorite }) {
   };
 
   return isPending ? (
-    <Loader isPending={isPending} />
+    <div className="mx-auto flex">
+      <Loader isPending={isPending} />
+    </div>
   ) : (
     <button
       disabled={isPending}

@@ -164,28 +164,6 @@ const useFavorite = (favoriteStage) => {
   });
 };
 
-// const useDeleteFavorite = () => {
-//   const mutationFn = async (id) =>
-//     await api.delete(`/api/profile/favorite?&id=${id}`);
-
-//   return useMutation({
-//     mutationFn,
-//     onSuccess: (data) => {
-//       if (data.message) {
-//         toast.success(data.message);
-//         // router.refresh() I had used this but its dosen't work
-//         window.location.reload();
-//       } else if (data.error) {
-//         toast.error(data.error);
-//         console.log(data);
-//       }
-//     },
-//     onError: (data) => {
-//       toast.error(data.response.data.error);
-//     },
-//   });
-// };
-
 export {
   useRegister,
   useAddProfile,
@@ -194,5 +172,4 @@ export {
   useDeleteProfileAdmin,
   usePublishProfile,
   useFavorite,
-  // useDeleteFavorite,
 };
