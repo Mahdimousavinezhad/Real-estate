@@ -1,3 +1,4 @@
+import PriceFilter from "../modules/buy-residential/PriceFilter";
 import Sidebar from "../modules/buy-residential/Sidebar";
 import Card from "../modules/Card";
 import Paginations from "../modules/Paginations";
@@ -11,6 +12,7 @@ function BuyResidentialPage({ data }) {
       <div className="flex justify-between gap-5 mt-10 mb-28 w-full max-[400px]:flex-col max-[400px]:justify-center">
         <div>
           <Sidebar />
+          <PriceFilter />
         </div>
         <div className="w-full">
           <SearchBar text={"تعداد کل آگهی های مربوطه:"} />

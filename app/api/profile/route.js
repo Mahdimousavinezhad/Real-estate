@@ -55,6 +55,16 @@ export async function GET(req) {
       delete query.favorite;
     }
 
+    if (rest.priceMin || rest.priceMax) {
+      query.price = {};
+
+      if (rest.priceMin) query.price.$gte = Number(rest.priceMin);
+      if (rest.priceMax) query.price.$lte = Number(rest.priceMax);
+
+      delete rest.priceMin;
+      delete rest.priceMax;
+    }
+
     if (rest) {
       for (const key in rest) {
         if (rest[key]) {

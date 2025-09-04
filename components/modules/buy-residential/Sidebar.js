@@ -17,7 +17,7 @@ function Sidebar() {
   };
 
   return (
-    <div className="shadow-[#304ffe4a_0px_4px_15px] w-[220px] p-4 rounded-xl max-sm:w-[140px] max-[400px]:mx-auto max-[400px]:w-[220px]">
+    <div className="shadow-[#304ffe4a_0px_4px_15px] p-4 rounded-xl w-[220px] max-sm:w-[140px] max-[400px]:mx-auto max-[400px]:w-[220px]">
       <p className="flex justify-center items-center gap-2 text-[1.2rem] font-normal mb-4">
         <HiFilter className="text-[1.3rem] text-cs-blue" />
         دسته بندی
