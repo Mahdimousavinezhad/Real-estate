@@ -30,27 +30,38 @@ function DashboardCard({ data }) {
   return (
     <div className="flex w-full p-5 border-2 border-[#304ffe58] rounded-[15px] mb-5 max-[420px]:flex-col">
       <Card data={data} dashboardResponsive={true} />
-      <div className="flex items-end justify-between w-full p-[10px] max-[305px]:flex-col max-[305px]:flex-wrap max-[305px]:gap-3">
-        <button
-          onClick={editHandler}
-          className="flex items-center justify-center max-[305px]:w-full w-[48%] bg-white cursor-pointer h-10 rounded-lg text-[1rem] border-2 border-green-500 text-green-500 gap-2 font-normal hover:bg-green-500 hover:text-white transition-all duration-200"
-        >
-          ویرایش
-          <FiEdit className="text-[1.1rem]" />
-        </button>
-        {isPending ? (
-          <div className="self-end mx-auto">
-            <Loader />
-          </div>
+      <div className="w-full self-end">
+        {data.published ? (
+          <p className="bg-green-200 rounded-lg text-green-700 font-normal p-2 w-full mb-2 mr-3 text-center max-[480px]:text-sm max-[420px]:!mr-0 max-[420px]:mt-4">
+            آگهی شما منتشر شده است!
+          </p>
         ) : (
-          <button
-            onClick={deleteHandler}
-            className="flex items-center justify-center max-[305px]:w-full w-[48%] bg-white cursor-pointer h-10 rounded-lg text-[1rem] border-2 border-rose-500 text-rose-500 gap-2 font-normal hover:bg-rose-500 hover:text-white transition-all duration-200"
-          >
-            حذف
-            <AiOutlineDelete className="text-[1.1rem]" />
-          </button>
+          <p className="bg-yellow-200 rounded-lg text-yellow-700 font-normal p-2 w-full mb-2 mr-3 text-center max-[480px]:text-sm max-[420px]:!mr-0 max-[420px]:mt-4">
+            آگهی شما در حال بررسی است!
+          </p>
         )}
+        <div className="flex items-end justify-between w-full p-[10px] max-[305px]:flex-col max-[305px]:flex-wrap max-[305px]:gap-3">
+          <button
+            onClick={editHandler}
+            className="flex items-center justify-center max-[305px]:w-full w-[48%] bg-white cursor-pointer h-10 rounded-lg text-[1rem] border-2 border-green-500 text-green-500 gap-2 font-normal hover:bg-green-500 hover:text-white transition-all duration-200"
+          >
+            ویرایش
+            <FiEdit className="text-[1.1rem]" />
+          </button>
+          {isPending ? (
+            <div className="self-end mx-auto">
+              <Loader />
+            </div>
+          ) : (
+            <button
+              onClick={deleteHandler}
+              className="flex items-center justify-center max-[305px]:w-full w-[48%] bg-white cursor-pointer h-10 rounded-lg text-[1rem] border-2 border-rose-500 text-rose-500 gap-2 font-normal hover:bg-rose-500 hover:text-white transition-all duration-200"
+            >
+              حذف
+              <AiOutlineDelete className="text-[1.1rem]" />
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );

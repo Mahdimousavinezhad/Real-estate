@@ -108,7 +108,6 @@ const usePublishProfile = (router) => {
         }, 1000);
       } else if (data.error) {
         toast.error(data.error);
-        console.log(data);
       }
     },
     onError: (data) => {
@@ -133,7 +132,6 @@ const useDeleteProfileAdmin = (router) => {
         }, 1000);
       } else if (data.error) {
         toast.error(data.error);
-        console.log(data);
       }
     },
     onError: (data) => {
@@ -155,7 +153,6 @@ const useFavorite = (favoriteStage) => {
         window.location.reload();
       } else if (data.error) {
         toast.error(data.error);
-        console.log(data);
       }
     },
     onError: (data) => {

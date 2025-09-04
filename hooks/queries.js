@@ -11,7 +11,6 @@ const useGetFavorite = (id) => {
     onSuccess: (data) => {
       if (data.error) {
         toast.error(data.error);
-        console.log(data);
       }
     },
     onError: (data) => {

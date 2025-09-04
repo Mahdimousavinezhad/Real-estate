@@ -12,7 +12,7 @@ import LogoutButton from "../modules/dashboard/LogoutButton";
 
 function DashboardSidebar({ children, user }) {
   const pathname = usePathname();
-  console.log(pathname);
+
   return (
     <div className="flex justify-between mt-20 gap-7 max-md:flex-col max-md:justify-center max-md:items-center">
       <div className="flex flex-col items-center h-fit py-[30px] px-[15px] rounded-[10px] shadow-[#304ffe4a_0px_4px_15px] w-[250px] max-md:w-96 max-md:text-center max-[420px]:w-60 max-[288px]:w-56">
