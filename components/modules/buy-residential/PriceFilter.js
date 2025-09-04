@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import Link from "next/link";
 import ReactSlider from "react-slider";
 
 export default function PriceFilter() {
@@ -15,11 +14,29 @@ export default function PriceFilter() {
 
   useEffect(() => {
     const params = new URLSearchParams(searchParams.toString());
+    if (initialMin === 0 && initialMax === 100000000) {
+      params.delete("priceMin");
+      params.delete("priceMax");
+      router.push(`?${params.toString()}`);
+      return;
+    }
+
+    if (
+      !params.has("priceMin") &&
+      !params.has("priceMax") &&
+      location.href === "http://localhost:3000/buy-residential"
+    ) {
+      setValues([0, 100000000]); // I was tried this but it make loop update
+      router.refresh();
+      // router.push(`?${params.toString()}`); // I was tried this but it make loop update
+    }
+  }, [searchParams]);
+
+  useEffect(() => {
+    const params = new URLSearchParams(searchParams.toString());
     params.set("priceMin", values[0]);
     params.set("priceMax", values[1]);
-    setTimeout(() => {
-      router.push(`?${params.toString()}`);
-    }, 1500);
+    router.push(`?${params.toString()}`);
   }, [values]);
 
   const handleInputChange = (index, value) => {
@@ -42,8 +59,6 @@ export default function PriceFilter() {
           <input
             type="number"
             value={values[0]}
-            min={0}
-            max={values[1]}
             onChange={(e) => handleInputChange(0, e.target.value)}
             className="border rounded-lg px-2 py-1 text-right focus:outline-none focus:ring focus:ring-blue-300 w-full"
           />
@@ -54,8 +69,6 @@ export default function PriceFilter() {
           <input
             type="number"
             value={values[1]}
-            min={values[0]}
-            max={100000000}
             onChange={(e) => handleInputChange(1, e.target.value)}
             className="border rounded-lg px-2 py-1 text-right focus:outline-none focus:ring focus:ring-blue-300 w-full"
           />
@@ -100,12 +113,12 @@ export default function PriceFilter() {
         <span>گران‌ترین</span>
         <span>ارزان‌ترین</span>
       </div>
-      <Link
-        href={"/buy-residential"}
+      <button
         className="bg-cs-blue text-white rounded-lg py-2 px-4 text-center transition-all delay-75 hover:scale-105 hover:bg-blue-700"
+        onClick={() => setValues([0, 100000000])}
       >
-        حذف فیلتر
-      </Link>
+        حذف فیلتر قیمت
+      </button>
     </div>
   );
 }
