@@ -21,11 +21,7 @@ export default function PriceFilter() {
       return;
     }
 
-    if (
-      !params.has("priceMin") &&
-      !params.has("priceMax") &&
-      location.href === "http://localhost:3000/buy-residential"
-    ) {
+    if (!params.has("priceMin") && !params.has("priceMax")) {
       setValues([0, 100000000]); // I was tried this but it make loop update
       router.refresh();
       // router.push(`?${params.toString()}`); // I was tried this but it make loop update
