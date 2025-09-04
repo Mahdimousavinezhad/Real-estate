@@ -7,6 +7,8 @@ import Link from "next/link";
 import toast from "react-hot-toast";
 import Loader from "@/components/modules/Loader";
 
+const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
 function SigninPage() {
   const [form, setForm] = useState({
     email: "",
@@ -30,6 +32,11 @@ function SigninPage() {
       toast.error("لطفا اطلاعات خود را کامل وارد کنید!");
       setIsPending(false);
       return;
+    }
+
+    if (!regex.test(form.email)) {
+      setIsPending(false);
+      return toast.error("لطفا ایمیل خود معتبر وارد کنید!");
     }
 
     const res = await signIn("credentials", {

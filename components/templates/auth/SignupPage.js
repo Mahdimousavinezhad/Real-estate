@@ -7,6 +7,8 @@ import { useRegister } from "@/hooks/mutations";
 import toast from "react-hot-toast";
 import Loader from "@/components/modules/Loader";
 
+const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
 function SignupPage() {
   const [form, setForm] = useState({
     email: "",
@@ -29,6 +31,10 @@ function SignupPage() {
 
     if (!form.email || !form.password || !form.repeatPassword) {
       return toast.error("لطفا اطلاعات خود را کامل وارد کنید!");
+    }
+
+    if (!regex.test(form.email)) {
+      return toast.error("لطفا ایمیل خود معتبر وارد کنید!");
     }
 
     if (form.password !== form.repeatPassword) {
