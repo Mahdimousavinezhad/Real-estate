@@ -10,6 +10,7 @@ function Sidebar() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const params = new URLSearchParams(searchParams);
+  const currentCategory = params.get("category") || "";
 
   const showAllAdsHandler = () => {
     params.delete("category");
@@ -23,14 +24,27 @@ function Sidebar() {
         دسته بندی
       </p>
       <div className="*:text-gray-500 flex flex-col gap-4 text-center">
-        <p onClick={showAllAdsHandler} className="cursor-pointer">
+        <p
+          onClick={showAllAdsHandler}
+          className={`cursor-pointer py-1 px-2 rounded-lg transition-all duration-100 hover:scale-105 hover:bg-slate-200 ${
+            currentCategory === "" &&
+            "bg-cs-blue !text-white hover:!bg-blue-800"
+          }`}
+        >
           همه
         </p>
         {Object.keys(categories).map((i) => {
           params.set("category", i);
 
           return (
-            <Link key={i} href={`/buy-residential?${params.toString()}`}>
+            <Link
+              key={i}
+              href={`/buy-residential?${params.toString()}`}
+              className={`py-1 px-2 rounded-lg transition-all duration-100 hover:scale-105 hover:bg-slate-200 ${
+                currentCategory === i &&
+                "bg-cs-blue !text-white hover:!bg-blue-800"
+              }`}
+            >
               {categories[i]}
             </Link>
           );
