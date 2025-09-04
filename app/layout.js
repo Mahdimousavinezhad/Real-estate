@@ -3,6 +3,7 @@ import { Toaster } from "react-hot-toast";
 
 import Layout from "@/components/layouts/Layout";
 import TanstakQueryProvider from "@/providers/TanstakQueryProvider";
+import ConnectionLostProvider from "@/providers/ConnectionLostProvider";
 import yekanBakhFont from "@/utils/fonts";
 
 import "./globals.css";
@@ -22,6 +23,7 @@ export default function RootLayout({ children }) {
             <Layout>{children}</Layout>
           </NextAuthProvider>
         </TanstakQueryProvider>
+        <ConnectionLostProvider />
         <Toaster />
       </body>
     </html>
