@@ -45,25 +45,30 @@ function DashboardButton() {
                 onClick={(e) => e.stopPropagation()}
                 className="flex flex-col mx-auto gap-3 absolute *:text-black bg-white rounded-lg top-11 w-40 border -right-28 p-4 shadow-lg"
               >
-                <Link href={"/dashboard"} className="flex items-center gap-2">
+                <Link
+                  href={"/dashboard"}
+                  className="flex items-center gap-2 py-1 px-2 rounded-lg transition-all duration-100 hover:scale-105 hover:bg-slate-200"
+                >
                   <FaRegUser className="self-start" />
                   حساب کاربری
                 </Link>
                 <Link
                   href={"/dashboard/my-profiles"}
-                  className="flex items-center gap-2"
+                  className="flex items-center gap-2 py-1 px-2 rounded-lg transition-all duration-100 hover:scale-105 hover:bg-slate-200"
                 >
                   <RiFileList3Line className="self-start" />
                   آگهی های من
                 </Link>
                 <Link
                   href={"/dashboard/favorites"}
-                  className="flex items-center gap-2"
+                  className="flex items-center gap-2 py-1 px-2 rounded-lg transition-all duration-100 hover:scale-105 hover:bg-slate-200"
                 >
                   <MdFavoriteBorder className="self-start" />
                   موردعلاقه ها
                 </Link>
-                <LogoutButton dropdown={true} />
+                <div className="py-1 px-2 rounded-lg transition-all duration-100 hover:scale-105 hover:bg-rose-200">
+                  <LogoutButton dropdown={true} />
+                </div>
               </div>
             )}
           </div>
