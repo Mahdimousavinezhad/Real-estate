@@ -1,10 +1,26 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 import { useFavorite } from "@/hooks/mutations";
+import { useGetFavorite } from "@/hooks/queries";
 import Loader from "../Loader";
 
-function DeleteFavoriteButton({ id, favorite }) {
-  const { mutate, isPending } = useFavorite(favorite);
+const forceReload = true; // I wrote this because prefetch value isn't work here
+
+function DeleteFavoriteButton({ id }) {
+  const [favoriteStatus, setFavoriteStatus] = useState();
+
+  const { data, isPending: isGetFavoritePending, refetch } = useGetFavorite(id);
+  const { mutate, isPending } = useFavorite(
+    favoriteStatus,
+    refetch,
+    forceReload
+  );
+
+  useEffect(() => {
+    setFavoriteStatus(data?.data?.favorite);
+  }, [isGetFavoritePending, data]);
 
   const deleteHandler = () => {
     mutate(id);

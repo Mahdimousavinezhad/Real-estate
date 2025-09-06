@@ -12,7 +12,7 @@ import Loader from "../Loader";
 function DashboardCard({ data }) {
   const router = useRouter();
 
-  const { mutate, isPending } = useDeleteProfile();
+  const { mutate, isPending } = useDeleteProfile(router);
 
   useEffect(() => {
     router.refresh();

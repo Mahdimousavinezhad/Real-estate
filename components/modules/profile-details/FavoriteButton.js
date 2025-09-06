@@ -9,10 +9,10 @@ import { useGetFavorite } from "@/hooks/queries";
 import Loader from "../Loader";
 
 function FavoriteButton({ data: { id } }) {
-  const { data, isPending: isGetFavoritePending } = useGetFavorite(id);
   const [favoriteStatus, setFavoriteStatus] = useState();
 
-  const { isPending, mutate } = useFavorite(favoriteStatus);
+  const { data, isPending: isGetFavoritePending, refetch } = useGetFavorite(id);
+  const { isPending, mutate } = useFavorite(favoriteStatus, refetch);
 
   useEffect(() => {
     setFavoriteStatus(data?.data?.favorite);

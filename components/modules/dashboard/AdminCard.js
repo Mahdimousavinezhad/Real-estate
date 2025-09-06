@@ -10,9 +10,9 @@ import { useDeleteProfileAdmin, usePublishProfile } from "@/hooks/mutations";
 function AdminCard({ profile: { _id, title, description, location, price } }) {
   const router = useRouter();
   const { mutate: publishMutate, isPending: isPublishPending } =
-    usePublishProfile();
+    usePublishProfile(router);
   const { mutate: deleteMutate, isPending: isDeletePending } =
-    useDeleteProfileAdmin();
+    useDeleteProfileAdmin(router);
 
   useEffect(() => {
     router.refresh();

@@ -26,7 +26,6 @@ function ProfileDetailsPage({
     price,
     constructionDate,
     published,
-    favorite,
   },
   role,
 }) {

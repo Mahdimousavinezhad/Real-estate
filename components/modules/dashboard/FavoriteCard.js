@@ -34,10 +34,7 @@ function FavoriteCard({ data, dashboardResponsive, residentialResponsive }) {
       >
         مشاهده آگهی
       </Link>
-      <DeleteFavoriteButton
-        id={JSON.parse(JSON.stringify(data._id))}
-        favorite={JSON.parse(JSON.stringify(data.favorite))}
-      />
+      <DeleteFavoriteButton id={JSON.parse(JSON.stringify(data._id))} />
     </div>
   );
 }

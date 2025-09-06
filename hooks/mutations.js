@@ -72,7 +72,7 @@ const useEditProfile = (profileId, router) => {
   });
 };
 
-const useDeleteProfile = () => {
+const useDeleteProfile = (router) => {
   const mutationFn = async (id) =>
     await api.delete("/api/profile", { params: { id } });
 
@@ -81,7 +81,7 @@ const useDeleteProfile = () => {
     onSuccess: (data) => {
       if (data.message) {
         toast.success(data.message);
-        location.reload();
+        router.refresh();
       } else if (data.error) {
         toast.error(data.error);
       }
@@ -101,10 +101,9 @@ const usePublishProfile = (router) => {
     onSuccess: (data) => {
       if (data.message) {
         toast.success(data.message);
-        // router.refresh() I had used this but its dosen't work
         router.push("/dashboard/admin"); // This is for dynamic route like: /dashboard/admin/[profileId]
         setTimeout(() => {
-          window.location.reload();
+          router.refresh();
         }, 1000);
       } else if (data.error) {
         toast.error(data.error);
@@ -125,10 +124,9 @@ const useDeleteProfileAdmin = (router) => {
     onSuccess: (data) => {
       if (data.message) {
         toast.success(data.message);
-        // router.refresh() I had used this but its dosen't work
         router.push("/dashboard/admin"); // This is for dynamic route like: /dashboard/admin/[profileId]
         setTimeout(() => {
-          window.location.reload();
+          router.refresh();
         }, 1000);
       } else if (data.error) {
         toast.error(data.error);
@@ -140,17 +138,19 @@ const useDeleteProfileAdmin = (router) => {
   });
 };
 
-const useFavorite = (favoriteStage) => {
+const useFavorite = (favoriteStatus, refetch, forceReload) => {
   const mutationFn = async (id) =>
-    await api.patch(`/api/profile/favorite?status=${favoriteStage}&id=${id}`);
+    await api.patch(`/api/profile/favorite?status=${favoriteStatus}&id=${id}`);
 
   return useMutation({
     mutationFn,
     onSuccess: (data) => {
       if (data.message) {
         toast.success(data.message);
-        // router.refresh() I had used this but its dosen't work
-        window.location.reload();
+        refetch();
+        if (forceReload) {
+          window.location.reload();
+        }
       } else if (data.error) {
         toast.error(data.error);
       }
